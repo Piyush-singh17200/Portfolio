@@ -75,7 +75,7 @@ export const resumeData = {
   email: "singhp17200@gmail.com",
   linkedin: "https://www.linkedin.com/in/singh-piyush18",
   github: "https://github.com/Piyush-singh17200",
-  portfolioUrl: "https://piyushsingh.dev",
+  portfolioUrl: "https://piyushsingh.tech",
   summary:
     "Full-Stack Developer experienced in building end-to-end web applications with the MERN stack, Next.js, and TypeScript, covering RESTful API design, database modeling, and responsive frontend development. Skilled in authentication, real-time application features, and independently deploying full-stack projects from schema design through production.",
 
