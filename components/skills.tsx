@@ -24,37 +24,37 @@ export default function Skills() {
     {
       id: "languages",
       title: "Languages",
-      icon: <Terminal className="h-5 w-5 text-primary" />,
+      icon: <Terminal className="h-5 w-5" />,
       items: resumeData.skills.languages,
     },
     {
       id: "frameworks",
       title: "Framework & Libraries",
-      icon: <Layers className="h-5 w-5 text-primary" />,
+      icon: <Layers className="h-5 w-5" />,
       items: resumeData.skills.frameworks,
     },
     {
       id: "databases",
       title: "Databases",
-      icon: <Database className="h-5 w-5 text-primary" />,
+      icon: <Database className="h-5 w-5" />,
       items: resumeData.skills.databases,
     },
     {
       id: "tools",
       title: "Tools & Platforms",
-      icon: <Wrench className="h-5 w-5 text-primary" />,
+      icon: <Wrench className="h-5 w-5" />,
       items: resumeData.skills.tools,
     },
     {
       id: "concepts",
       title: "Concepts & Architecture",
-      icon: <Cpu className="h-5 w-5 text-primary" />,
+      icon: <Cpu className="h-5 w-5" />,
       items: resumeData.skills.concepts,
     },
     {
       id: "softSkills",
       title: "Soft Skills & Leadership",
-      icon: <Sparkles className="h-5 w-5 text-primary" />,
+      icon: <Sparkles className="h-5 w-5" />,
       items: resumeData.skills.softSkills,
     },
   ] as const
@@ -157,38 +157,24 @@ export default function Skills() {
                       </h3>
                     </div>
 
-                    <div className="space-y-4">
-                      {cat.items.map((skill, sIdx) => (
-                        <div key={sIdx} className="space-y-1.5">
-                          <div className="flex justify-between items-center text-xs">
-                            <span className="font-medium text-foreground flex items-center gap-2">
-                              <span className="inline-flex items-center justify-center p-1 rounded-md bg-muted/60 border border-primary/10">
-                                {getSkillIcon(skill.name, "h-4 w-4")}
-                              </span>
-                              <span>{skill.name}</span>
-                              {skill.highlight && (
-                                <Badge variant="outline" className="text-[10px] py-0 px-1.5 h-4 bg-primary/15 text-primary border-primary/30">
-                                  Core
-                                </Badge>
-                              )}
-                            </span>
-                            <span className="text-primary font-semibold">{skill.level}%</span>
-                          </div>
-
-                          {/* 3D Meter Bar */}
-                          <div className="relative h-2.5 w-full bg-muted/50 rounded-full overflow-hidden border border-primary/10">
-                            <motion.div
-                              className="h-full bg-gradient-to-r from-primary/70 via-primary to-gold rounded-full relative"
-                              initial={{ width: 0 }}
-                              animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                              transition={{ duration: 1, delay: 0.1 + sIdx * 0.05 }}
-                              style={{
-                                boxShadow: "0 0 10px rgba(84, 168, 148, 0.32)",
-                              }}
+                    <div className="flex flex-wrap gap-2">
+                      {cat.items.map((skill) => (
+                        <div
+                          key={skill.name}
+                          className="flex items-center gap-2 rounded-lg border border-primary/15 bg-muted/20 px-2.5 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5"
+                        >
+                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-primary/10 bg-background/60">
+                            {getSkillIcon(skill.name, "h-3.5 w-3.5")}
+                          </span>
+                          <span>{skill.name}</span>
+                          {skill.highlight && (
+                            <Badge
+                              variant="outline"
+                              className="ml-0.5 h-4 border-primary/25 bg-primary/10 px-1.5 py-0 text-[9px] text-primary"
                             >
-                              <div className="absolute top-0 right-0 h-full w-1.5 bg-white/70 rounded-full"></div>
-                            </motion.div>
-                          </div>
+                              Core
+                            </Badge>
+                          )}
                         </div>
                       ))}
                     </div>

@@ -31,7 +31,6 @@ export interface SkillCategory {
   description: string
   skills: {
     name: string
-    level: number
     highlight?: boolean
   }[]
 }
@@ -140,46 +139,46 @@ export const resumeData = {
 
   skills: {
     languages: [
-      { name: "JavaScript", level: 94, highlight: true },
-      { name: "TypeScript", level: 90, highlight: true },
-      { name: "Python", level: 82 },
-      { name: "Java", level: 86, highlight: true },
-      { name: "C++", level: 84 },
-      { name: "C", level: 80 },
+      { name: "JavaScript", highlight: true },
+      { name: "TypeScript", highlight: true },
+      { name: "Python" },
+      { name: "Java", highlight: true },
+      { name: "C++" },
+      { name: "C" },
     ],
     frameworks: [
-      { name: "React.js", level: 95, highlight: true },
-      { name: "Next.js", level: 92, highlight: true },
-      { name: "Node.js", level: 90, highlight: true },
-      { name: "Express.js", level: 90, highlight: true },
-      { name: "Spring Boot", level: 78 },
-      { name: "Framer Motion", level: 88, highlight: true },
+      { name: "React.js", highlight: true },
+      { name: "Next.js", highlight: true },
+      { name: "Node.js", highlight: true },
+      { name: "Express.js", highlight: true },
+      { name: "Spring Boot" },
+      { name: "Framer Motion", highlight: true },
     ],
     databases: [
-      { name: "MongoDB", level: 92, highlight: true },
-      { name: "PostgreSQL", level: 86, highlight: true },
-      { name: "MySQL", level: 88 },
-      { name: "SQLite", level: 82 },
+      { name: "MongoDB", highlight: true },
+      { name: "PostgreSQL", highlight: true },
+      { name: "MySQL" },
+      { name: "SQLite" },
     ],
     tools: [
-      { name: "Git", level: 92, highlight: true },
-      { name: "GitHub", level: 94, highlight: true },
-      { name: "Postman", level: 90 },
-      { name: "VS Code", level: 95 },
-      { name: "Vercel", level: 92 },
-      { name: "Figma", level: 88, highlight: true },
+      { name: "Git", highlight: true },
+      { name: "GitHub", highlight: true },
+      { name: "Postman" },
+      { name: "VS Code" },
+      { name: "Vercel" },
+      { name: "Figma", highlight: true },
     ],
     concepts: [
-      { name: "REST APIs", level: 94, highlight: true },
-      { name: "JWT Authentication", level: 92, highlight: true },
-      { name: "Responsive UI Design", level: 95, highlight: true },
+      { name: "REST APIs", highlight: true },
+      { name: "JWT Authentication", highlight: true },
+      { name: "Responsive UI Design", highlight: true },
     ],
     softSkills: [
-      { name: "Problem-Solving", level: 95, highlight: true },
-      { name: "Team Collaboration", level: 92 },
-      { name: "Adaptability", level: 90 },
-      { name: "Communication", level: 88 },
-      { name: "Time Management", level: 88 },
+      { name: "Problem-Solving", highlight: true },
+      { name: "Team Collaboration" },
+      { name: "Adaptability" },
+      { name: "Communication" },
+      { name: "Time Management" },
     ],
   },
 
