@@ -1,18 +1,13 @@
 "use client"
 
-import { useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, Send, Sparkles, Code2, Terminal } from "lucide-react"
-import { useIsMobile } from "@/hooks/use-mobile"
 import { resumeData } from "@/lib/resume-data"
 import { TechIcons } from "@/components/tech-icons"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { BentoShowcase } from "@/components/bento-showcase"
 
 export default function Hero() {
-  const isMobile = useIsMobile()
-
   const coreLanguages = [
     { name: "JavaScript", icon: <TechIcons.javascript className="h-5 w-5" /> },
     { name: "TypeScript", icon: <TechIcons.typescript className="h-5 w-5" /> },
@@ -34,8 +29,8 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-24 pb-16">
       {/* Background Soft Glow Orbs */}
-      <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10 animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-float" />
+      <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/[0.07] rounded-full blur-3xl pointer-events-none -z-10 animate-float" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-gold/[0.05] rounded-full blur-3xl pointer-events-none -z-10 animate-float" />
 
       <div className="container mx-auto px-4 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -47,10 +42,10 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
           >
             {/* Availability Pill */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-background/80 border border-primary/30 backdrop-blur-md shadow-lg shadow-primary/10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-background/80 border border-gold/25 backdrop-blur-md shadow-lg shadow-black/5">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <span className="absolute inline-flex h-full w-full rounded-full bg-gold/25"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold"></span>
               </span>
               <span className="text-foreground/90">
                 Available for Full-Stack Roles & Internships
@@ -60,8 +55,8 @@ export default function Hero() {
             {/* Name Headline */}
             <div>
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-foreground leading-[1.1]">
-                Hi, I'm{" "}
-                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">
+                Hi, I&apos;m{" "}
+                <span className="text-gradient">
                   {resumeData.name}
                 </span>
               </h1>
@@ -86,7 +81,7 @@ export default function Hero() {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
               <Button
                 size="lg"
-                className="px-7 py-5 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-xl shadow-primary/25 border border-primary/40 gap-2"
+                className="px-7 py-5 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition-colors duration-300 shadow-lg shadow-primary/15 border border-primary/30 gap-2"
                 onClick={() => {
                   const projectsSection = document.getElementById("projects")
                   if (projectsSection) {
@@ -101,7 +96,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="px-7 py-5 rounded-xl bg-background/50 backdrop-blur-md hover:bg-primary/10 border-primary/30 font-medium text-sm transition-all duration-300 transform hover:scale-105 gap-2"
+                className="px-7 py-5 rounded-xl bg-background/50 backdrop-blur-md hover:bg-primary/10 border-primary/30 font-medium text-sm transition-colors duration-300 gap-2"
                 onClick={() => {
                   const contactSection = document.getElementById("contact")
                   if (contactSection) {
@@ -112,10 +107,6 @@ export default function Hero() {
                 <Send className="h-4 w-4" />
                 Contact Me
               </Button>
-            </div>
-
-            <div className="flex justify-center lg:justify-start mt-4">
-              <ThemeToggle />
             </div>
 
             {/* Core Languages Strip */}
@@ -129,7 +120,7 @@ export default function Hero() {
                 {coreLanguages.map((tech) => (
                   <div
                     key={tech.name}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/60 hover:bg-background/90 border border-primary/15 hover:border-primary/40 backdrop-blur-md transition-all duration-200 shadow-sm hover:scale-105 group cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/60 hover:bg-background/90 border border-primary/15 hover:border-primary/35 backdrop-blur-md transition-colors duration-200 shadow-sm group cursor-pointer"
                   >
                     <div className="transform group-hover:scale-110 transition-transform duration-200">
                       {tech.icon}

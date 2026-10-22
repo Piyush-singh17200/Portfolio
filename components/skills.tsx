@@ -5,15 +5,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { motion, useInView } from "framer-motion"
 import {
-  Code2,
-  Server,
   Database,
   Cpu,
   Wrench,
   Terminal,
   Layers,
   Sparkles,
-  CheckCircle2,
 } from "lucide-react"
 import { resumeData } from "@/lib/resume-data"
 import { getSkillIcon, TechIcons } from "@/components/tech-icons"
@@ -21,7 +18,7 @@ import { getSkillIcon, TechIcons } from "@/components/tech-icons"
 export default function Skills() {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 })
-  const [activeTab, setActiveTab] = useState<"all" | "languages" | "frameworks" | "databases" | "tools" | "concepts" | "softSkills">("all")
+  const [activeTab, setActiveTab] = useState<SkillCategoryId>("all")
 
   const categories = [
     {
@@ -60,7 +57,9 @@ export default function Skills() {
       icon: <Sparkles className="h-5 w-5 text-primary" />,
       items: resumeData.skills.softSkills,
     },
-  ]
+  ] as const
+
+  type SkillCategoryId = (typeof categories)[number]["id"] | "all"
 
   const displayedCategories =
     activeTab === "all"
@@ -106,7 +105,7 @@ export default function Skills() {
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             Skills & <span className="text-primary">Competencies</span>
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-primary to-cyan-400 rounded-full mb-6"></div>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-primary via-primary/70 to-gold rounded-full mb-6"></div>
           <p className="max-w-2xl text-muted-foreground text-sm md:text-base">
             Comprehensive breakdown of my engineering capabilities spanning languages, frontend frameworks, backend architecture, databases, and core computer science fundamentals.
           </p>
@@ -124,7 +123,7 @@ export default function Skills() {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as SkillCategoryId)}
                 className={`px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all ${
                   activeTab === tab.id
                     ? "bg-primary text-primary-foreground shadow-md"
@@ -179,12 +178,12 @@ export default function Skills() {
                           {/* 3D Meter Bar */}
                           <div className="relative h-2.5 w-full bg-muted/50 rounded-full overflow-hidden border border-primary/10">
                             <motion.div
-                              className="h-full bg-gradient-to-r from-primary/70 via-primary to-cyan-400 rounded-full relative"
+                              className="h-full bg-gradient-to-r from-primary/70 via-primary to-gold rounded-full relative"
                               initial={{ width: 0 }}
                               animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
                               transition={{ duration: 1, delay: 0.1 + sIdx * 0.05 }}
                               style={{
-                                boxShadow: "0 0 10px rgba(120, 80, 255, 0.4)",
+                                boxShadow: "0 0 10px rgba(84, 168, 148, 0.32)",
                               }}
                             >
                               <div className="absolute top-0 right-0 h-full w-1.5 bg-white/70 rounded-full"></div>

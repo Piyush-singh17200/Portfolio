@@ -24,7 +24,6 @@ import {
   Wrench,
   Layers,
   Terminal,
-  CheckCircle2,
   Compass,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"

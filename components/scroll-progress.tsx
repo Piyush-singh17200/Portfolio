@@ -14,5 +14,10 @@ export function ScrollProgress() {
 
   if (!mounted) return null
 
-  return <motion.div className="fixed top-0 left-0 right-0 h-1 bg-primary/50 origin-left z-50" style={{ scaleX }} />
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-0.5 origin-left z-50 bg-gradient-to-r from-primary via-primary/70 to-gold"
+      style={{ scaleX }}
+    />
+  )
 }

@@ -35,7 +35,7 @@ export default function Experience() {
           <h2 className="text-3xl sm:text-5xl font-bold text-foreground">
             Academic & <span className="text-primary">Engineering Journey</span>
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-primary to-cyan-400 rounded-full mx-auto mt-4 mb-4"></div>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-primary via-primary/70 to-gold rounded-full mx-auto mt-4 mb-4"></div>
           <p className="max-w-2xl mx-auto text-sm sm:text-base text-muted-foreground">
             A chronological timeline of my education at Lovely Professional University and Sheffield School, full-stack project milestones, and professional certifications.
           </p>
@@ -46,7 +46,7 @@ export default function Experience() {
           <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-primary/15" />
           
           <motion.div
-            className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 via-indigo-500 to-cyan-400 origin-top"
+            className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary/40 to-gold/50 origin-top"
             style={{ scaleY }}
           />
 

@@ -10,6 +10,7 @@ import {
   Award,
   Database,
   Download,
+  FileText,
   CheckCircle2,
   MapPin,
   Github,
@@ -57,7 +58,7 @@ export default function About() {
           <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold mb-4">
             About <span className="text-primary">Piyush Singh</span>
           </motion.h2>
-          <motion.div variants={itemVariants} className="w-20 h-1.5 bg-gradient-to-r from-primary to-cyan-400 rounded-full mb-6"></motion.div>
+          <motion.div variants={itemVariants} className="w-20 h-1.5 bg-gradient-to-r from-primary via-primary/70 to-gold rounded-full mb-6"></motion.div>
           <motion.p variants={itemVariants} className="max-w-2xl text-muted-foreground text-sm md:text-base">
             Full-Stack Developer crafting reliable, responsive, and performance-driven web systems with the MERN stack, Next.js, and TypeScript.
           </motion.p>
@@ -71,15 +72,15 @@ export default function About() {
             animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.95, x: -30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-md rounded-2xl p-1 bg-gradient-to-b from-primary/30 via-blue-500/15 to-cyan-500/20 shadow-2xl border border-primary/30">
+            <div className="relative w-full max-w-md rounded-2xl p-1 bg-gradient-to-b from-primary/25 via-border/30 to-gold/15 shadow-2xl shadow-black/10 border border-primary/20">
               <div className="rounded-[14px] bg-background/90 backdrop-blur-xl p-6 sm:p-7 space-y-6">
                 {/* Header Avatar & Monogram */}
                 <div className="flex items-center gap-4">
-                  <div className="relative flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-400 text-white font-black text-xl shadow-xl shadow-blue-500/30 ring-2 ring-primary/30 shrink-0">
+                  <div className="relative flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-primary via-primary/80 to-gold/80 text-primary-foreground font-black text-xl shadow-xl shadow-primary/15 ring-2 ring-primary/25 shrink-0">
                     <span>PS</span>
                     <span className="absolute -bottom-1 -right-1 flex h-4 w-4">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 ring-2 ring-background"></span>
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-gold/25"></span>
+                      <span className="relative inline-flex rounded-full h-4 w-4 bg-gold ring-2 ring-background"></span>
                     </span>
                   </div>
 
@@ -90,7 +91,7 @@ export default function About() {
                     <p className="text-xs font-semibold text-primary">
                       {resumeData.title}
                     </p>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-semibold border border-emerald-500/30">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gold/10 text-gold text-[10px] font-semibold border border-gold/25">
                       Open to Opportunities
                     </span>
                   </div>
@@ -284,6 +285,18 @@ export default function About() {
                 <a href="#projects">
                   <Sparkles className="h-4 w-4 text-primary" />
                   Explore Projects
+                </a>
+              </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="border-primary/40 hover:bg-primary/10 backdrop-blur-sm gap-2"
+              >
+                <a href="/resume">
+                  <FileText className="h-4 w-4 text-primary" />
+                  Full Resume
                 </a>
               </Button>
             </motion.div>

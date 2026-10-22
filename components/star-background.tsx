@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
 
 interface Particle {
@@ -17,15 +17,15 @@ interface Particle {
 
 export default function StarBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [mounted, setMounted] = useState(false)
   const isMobile = useIsMobile()
   const mouseRef = useRef({ x: -1000, y: -1000, targetX: -1000, targetY: -1000 })
 
   useEffect(() => {
-    setMounted(true)
-
     const canvas = canvasRef.current
     if (!canvas) return
+
+    // Keep the page calm for visitors who ask for reduced motion.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D | null
     if (!ctx) return
@@ -56,24 +56,23 @@ export default function StarBackground() {
     window.addEventListener("mousemove", handleMouseMove, { passive: true })
     window.addEventListener("touchmove", handleTouchMove, { passive: true })
 
-    // Palette of subtle celestial colors (violet, cyan, indigo, soft white)
+    // Muted celestial palette: jade, brass, slate, and soft white.
     const colors = [
-      "rgba(147, 51, 234, ",  // purple
-      "rgba(99, 102, 241, ",  // indigo
-      "rgba(59, 130, 246, ",  // blue
-      "rgba(6, 182, 212, ",   // cyan
-      "rgba(255, 255, 255, ", // white
+      "rgba(84, 168, 148, ",   // jade
+      "rgba(217, 183, 126, ",  // brass
+      "rgba(148, 163, 184, ",  // slate
+      "rgba(255, 255, 255, ",  // white
     ]
 
     const particles: Particle[] = []
-    const particleCount = isMobile ? 22 : 48
-    const connectionDistance = isMobile ? 50 : 85
-    const mouseRadius = isMobile ? 70 : 120
+    const particleCount = isMobile ? 18 : 36
+    const connectionDistance = isMobile ? 48 : 75
+    const mouseRadius = isMobile ? 60 : 90
 
     function initParticles() {
       particles.length = 0
       for (let i = 0; i < particleCount; i++) {
-        const baseAlpha = Math.random() * 0.4 + 0.15
+        const baseAlpha = Math.random() * 0.26 + 0.10
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -138,8 +137,8 @@ export default function StarBackground() {
         height * 0.35,
         Math.max(width, height) * 0.6
       )
-      ambientGradient.addColorStop(0, "rgba(95, 39, 205, 0.06)")
-      ambientGradient.addColorStop(0.5, "rgba(59, 130, 246, 0.03)")
+      ambientGradient.addColorStop(0, "rgba(84, 168, 148, 0.05)")
+      ambientGradient.addColorStop(0.5, "rgba(217, 183, 126, 0.025)")
       ambientGradient.addColorStop(1, "rgba(0, 0, 0, 0)")
       context.fillStyle = ambientGradient
       context.fillRect(0, 0, width, height)
@@ -149,7 +148,7 @@ export default function StarBackground() {
         const p = particles[i]
 
         // Natural pulse
-        p.alpha = p.baseAlpha + Math.sin(time * p.pulseSpeed * 60) * 0.2
+        p.alpha = p.baseAlpha + Math.sin(time * p.pulseSpeed * 60) * 0.1
 
         // Mouse avoidance/attraction
         const dx = mouseX - p.x
@@ -189,11 +188,11 @@ export default function StarBackground() {
 
           if (distSq < maxDistSq) {
             const dist = Math.sqrt(distSq)
-            const lineAlpha = (1 - dist / connectionDistance) * 0.16
+            const lineAlpha = (1 - dist / connectionDistance) * 0.1
             context.beginPath()
             context.moveTo(p.x, p.y)
             context.lineTo(p2.x, p2.y)
-            context.strokeStyle = `rgba(139, 92, 246, ${lineAlpha})`
+            context.strokeStyle = `rgba(84, 168, 148, ${lineAlpha})`
             context.lineWidth = 0.6
             context.stroke()
           }
@@ -224,7 +223,7 @@ export default function StarBackground() {
 
         const starGrad = context.createLinearGradient(tailX, tailY, headX, headY)
         starGrad.addColorStop(0, "rgba(255, 255, 255, 0)")
-        starGrad.addColorStop(0.8, `rgba(168, 85, 247, ${s.opacity * 0.6})`)
+        starGrad.addColorStop(0.8, `rgba(217, 183, 126, ${s.opacity * 0.45})`)
         starGrad.addColorStop(1, `rgba(255, 255, 255, ${s.opacity * 0.95})`)
 
         context.beginPath()
@@ -267,11 +266,10 @@ export default function StarBackground() {
     }
   }, [isMobile])
 
-  if (!mounted) return null
-
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       className="fixed inset-0 w-full h-full pointer-events-none z-0"
       style={{ background: "transparent" }}
     />

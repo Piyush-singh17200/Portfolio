@@ -8,9 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   Compass,
   CheckCircle2,
-  Figma,
-  Layers,
-  Sparkles,
   Award,
   Calendar,
   MapPin,
@@ -34,17 +31,17 @@ export default function SummerTraining() {
       description: "Low-fidelity wireframing transitioning into high-fidelity clickable interactive prototypes in Figma.",
     },
     {
-      icon: <Users className="h-5 w-5 text-purple-400" />,
+      icon: <Users className="h-5 w-5 text-primary" />,
       title: "User-Centered Design",
       description: "Conducting user research, persona creation, user journey mapping, and information architecture.",
     },
     {
-      icon: <Smartphone className="h-5 w-5 text-cyan-400" />,
+      icon: <Smartphone className="h-5 w-5 text-gold" />,
       title: "Responsive Multi-Device",
       description: "Designing intuitive UI layouts optimized across mobile viewports, tablets, and desktop displays.",
     },
     {
-      icon: <Eye className="h-5 w-5 text-emerald-400" />,
+      icon: <Eye className="h-5 w-5 text-primary" />,
       title: "Usability Testing",
       description: "Iterative testing, accessibility audits, and design heuristic evaluations to refine functional prototypes.",
     },
@@ -57,7 +54,7 @@ export default function SummerTraining() {
       className="py-24 bg-gradient-to-b from-background/95 via-background to-background relative overflow-hidden"
     >
       {/* Background Soft Glow Orbs */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-primary/[0.06] rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="container mx-auto px-4">
@@ -74,7 +71,7 @@ export default function SummerTraining() {
           <h2 className="text-3xl sm:text-5xl font-bold mb-4">
             Summer <span className="text-primary">Training</span>
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-primary to-cyan-400 rounded-full mb-6"></div>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-primary via-primary/70 to-gold rounded-full mb-6"></div>
           <p className="max-w-2xl text-muted-foreground text-sm md:text-base">
             Official summer training completed at Lovely Professional University focused on end-to-end UI/UX design, interactive prototyping, and usability testing.
           </p>
@@ -89,7 +86,7 @@ export default function SummerTraining() {
           >
             <Card className="bg-background/60 backdrop-blur-xl border-primary/25 hover:border-primary/50 transition-all duration-300 shadow-2xl relative overflow-hidden group">
               {/* Top Accent Gradient Bar */}
-              <div className="h-2 w-full bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400" />
+              <div className="h-2 w-full bg-gradient-to-r from-primary via-primary/80 to-gold" />
 
               <CardHeader className="p-6 sm:p-8 pb-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
@@ -97,7 +94,7 @@ export default function SummerTraining() {
                     <Badge className="bg-primary/20 text-primary border-primary/30 px-3 py-1 text-xs font-semibold">
                       {training.credentialType}
                     </Badge>
-                    <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/30 px-3 py-1 text-xs font-bold flex items-center gap-1">
+                    <Badge className="bg-gold/10 text-gold border-gold/25 px-3 py-1 text-xs font-bold flex items-center gap-1">
                       <Award className="h-3.5 w-3.5" /> Verified Completion
                     </Badge>
                   </div>

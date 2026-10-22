@@ -1,0 +1,9 @@
+# pnpm 10/11 allow-list (older Vercel builds)
+onlyBuiltDependencies:
+  - sharp
+  - unrs-resolver
+
+# pnpm 12+ allow-list (current local toolchain)
+allowBuilds:
+  sharp: true
+  unrs-resolver: true

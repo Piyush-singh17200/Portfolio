@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 // all in fixtures is set to tailwind v3 as interims solutions
 
@@ -43,6 +44,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
+        gold: 'hsl(var(--gold))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -93,6 +95,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate],
 }
 export default config

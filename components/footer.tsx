@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Github, Linkedin, Mail, Heart } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import { resumeData } from "@/lib/resume-data"
 
 export default function Footer() {
@@ -32,11 +32,10 @@ export default function Footer() {
             </p>
             <div className="mt-3 flex items-center justify-center md:justify-start gap-3 text-xs">
               <a
-                href="/Piyush_Singh_Resume.pdf"
-                download="Piyush_Singh_Resume.pdf"
+                href="/resume"
                 className="text-muted-foreground hover:text-primary transition-colors font-medium"
               >
-                Resume PDF
+                Resume
               </a>
               <span className="text-muted-foreground/30">•</span>
               <a
@@ -93,7 +92,7 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="flex items-center justify-center gap-1">
-            Engineered with Next.js, TypeScript, Tailwind CSS & Three.js
+            Engineered with Next.js, TypeScript, Tailwind CSS & Framer Motion
           </p>
         </motion.div>
       </div>

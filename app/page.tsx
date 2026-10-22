@@ -1,5 +1,3 @@
-"use client"
-
 import Hero from "@/components/hero"
 import About from "@/components/about"
 import Projects from "@/components/projects"
@@ -9,7 +7,6 @@ import Skills from "@/components/skills"
 import Experience from "@/components/experience"
 import Contact from "@/components/contact"
 import FloatingActionButton from "@/components/floating-action-button"
-import ResumeModal from "@/components/resume-modal"
 
 export default function Home() {
   return (
@@ -23,7 +20,6 @@ export default function Home() {
       <Experience />
       <Contact />
       <FloatingActionButton />
-      <ResumeModal />
     </div>
   )
 }

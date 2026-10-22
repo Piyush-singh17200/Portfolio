@@ -21,6 +21,7 @@ import {
   Sparkles,
 } from "lucide-react"
 import { resumeData } from "@/lib/resume-data"
+import { trackEvent } from "@/lib/analytics"
 
 export default function Contact() {
   const sectionRef = useRef(null)
@@ -34,6 +35,7 @@ export default function Contact() {
     email: "",
     subject: "",
     message: "",
+    website: "",
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -58,6 +60,8 @@ export default function Contact() {
       const data = await response.json()
 
       if (response.ok && data.success) {
+        trackEvent("contact_submitted", { method: data.method ?? "unknown" })
+
         if (data.needsActivation) {
           setSubmittedStatus("activation_needed")
           toast({
@@ -78,6 +82,7 @@ export default function Contact() {
           email: "",
           subject: "",
           message: "",
+          website: "",
         })
       } else {
         setSubmittedStatus("error")
@@ -87,8 +92,11 @@ export default function Contact() {
           variant: "destructive",
         })
       }
-    } catch (err: any) {
-      console.error("Submission error:", err)
+    } catch (error: unknown) {
+      console.error(
+        "Submission error:",
+        error instanceof Error ? error.message : error
+      )
       setSubmittedStatus("error")
       toast({
         title: "Connection Error",
@@ -171,7 +179,7 @@ export default function Contact() {
           <h2 className="text-3xl sm:text-5xl font-bold mb-4">
             Get In <span className="text-primary">Touch</span>
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-primary to-cyan-400 rounded-full mb-6"></div>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-primary via-primary/70 to-gold rounded-full mb-6"></div>
           <p className="max-w-2xl text-muted-foreground text-sm sm:text-base">
             Have a project in mind, an internship opening, or a full-time role? Fill out the form below and your message will be forwarded <span className="text-foreground font-semibold">directly to my personal Gmail inbox</span>.
           </p>
@@ -187,6 +195,7 @@ export default function Contact() {
           >
             <Card className="bg-background/50 backdrop-blur-md border-primary/20 hover:border-primary/50 transition-all duration-300 shadow-xl">
               <CardContent className="p-6 sm:p-8">
+                <div aria-live="polite" aria-atomic="true">
                 {/* Success Banner */}
                 {submittedStatus === "success" && (
                   <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 flex items-start gap-3">
@@ -220,13 +229,28 @@ export default function Contact() {
                     <div className="text-sm">
                       <p className="font-semibold text-rose-200">Direct server dispatch notice</p>
                       <p className="text-rose-400/90 text-xs mt-1">
-                        You can also send your message directly via your Gmail web app by clicking "Open in Gmail Web" below.
+                        You can also send your message directly via your Gmail web app by clicking &quot;Open in Gmail Web&quot; below.
                       </p>
                     </div>
                   </div>
                 )}
+                </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot: hidden from people, attractive to basic bots. */}
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      id="website"
+                      name="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -238,6 +262,9 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
+                        autoComplete="name"
+                        minLength={2}
+                        maxLength={80}
                         required
                         className="bg-background/60 border-primary/20 focus:border-primary"
                       />
@@ -253,6 +280,8 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="john@example.com"
+                        autoComplete="email"
+                        maxLength={160}
                         required
                         className="bg-background/60 border-primary/20 focus:border-primary"
                       />
@@ -269,6 +298,8 @@ export default function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Full-Stack Role / Project Inquiry"
+                      minLength={3}
+                      maxLength={140}
                       required
                       className="bg-background/60 border-primary/20 focus:border-primary"
                     />
@@ -284,6 +315,8 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Hi Piyush, I saw your portfolio and would love to connect regarding..."
+                      minLength={10}
+                      maxLength={4000}
                       required
                       className="min-h-[140px] bg-background/60 border-primary/20 focus:border-primary text-sm"
                     />
@@ -318,6 +351,10 @@ export default function Contact() {
                       </a>
                     </Button>
                   </div>
+
+                  <p className="text-[11px] leading-relaxed text-muted-foreground">
+                    Your details are only used to reply to this message. No newsletters, no sharing.
+                  </p>
                 </form>
               </CardContent>
             </Card>
@@ -353,7 +390,7 @@ export default function Contact() {
 
             {/* Resume & Social Links Card */}
             <motion.div variants={itemVariants}>
-              <Card className="bg-gradient-to-br from-primary/15 via-background/60 to-purple-500/10 backdrop-blur-md border-primary/30 p-5 space-y-4">
+              <Card className="bg-gradient-to-br from-primary/10 via-background/60 to-gold/10 backdrop-blur-md border-primary/25 p-5 space-y-4">
                 <div>
                   <h4 className="font-bold text-sm text-foreground flex items-center gap-1.5">
                     <Sparkles className="h-4 w-4 text-primary" /> Professional Connect

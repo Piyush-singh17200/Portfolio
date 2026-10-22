@@ -1,6 +1,7 @@
 export interface Project {
   title: string
   subtitle: string
+  slug: string
   period?: string
   description: string
   bulletPoints: string[]
@@ -187,6 +188,7 @@ export const resumeData = {
     {
       title: "DriveEasy",
       subtitle: "Smart Car Rental Platform",
+      slug: "driveeasy",
       period: "Sep 2026",
       description:
         "Developed a full-stack car rental platform with role-based access, vehicle listings, availability tracking, bookings, and fleet management.",
@@ -210,12 +212,13 @@ export const resumeData = {
       ],
       category: "fullstack",
       featured: true,
+      image: "/projects/driveeasy.svg",
       githubUrl: "https://github.com/Piyush-singh17200/driveeasy",
-      liveUrl: "https://github.com/Piyush-singh17200/driveeasy",
     },
     {
       title: "YojanaSetu",
       subtitle: "Government Scheme Eligibility Platform",
+      slug: "yojanasetu",
       period: "Jul 2026",
       description:
         "Built a government scheme platform that ranks recommendations using income, occupation, education, gender, category, and disability factors.",
@@ -236,12 +239,13 @@ export const resumeData = {
       ],
       category: "ai",
       featured: true,
+      image: "/projects/yojanasetu.svg",
       githubUrl: "https://github.com/Piyush-singh17200/YojanaSetu",
-      liveUrl: "https://github.com/Piyush-singh17200/YojanaSetu",
     },
     {
       title: "EduAI",
       subtitle: "AI Learning & Career Development Platform",
+      slug: "eduai",
       period: "Mar 2026",
       description:
         "Architected an AI-driven learning platform combining intelligent tutoring, adaptive learning paths, study planning, career-roadmap generation, and mock interviews.",
@@ -263,8 +267,8 @@ export const resumeData = {
       ],
       category: "ai",
       featured: true,
+      image: "/projects/eduai.svg",
       githubUrl: "https://github.com/Piyush-singh17200/EDUAI",
-      liveUrl: "https://github.com/Piyush-singh17200/EDUAI",
     },
   ] as Project[],
 

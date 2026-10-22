@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowUp, Menu, X, Moon, Sun, Share2, FileText, Mail } from "lucide-react"
+import { ArrowUp, Menu, X, Moon, Sun, Share2, FileText } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useToast } from "@/hooks/use-toast"
-import { triggerOpenResume } from "@/hooks/use-resume-modal"
 import { resumeData } from "@/lib/resume-data"
 
 export default function FloatingActionButton() {
@@ -123,14 +123,13 @@ export default function FloatingActionButton() {
                     </Button>
 
                     <Button
+                      asChild
                       size="sm"
-                      onClick={() => {
-                        setIsMenuOpen(false)
-                        triggerOpenResume()
-                      }}
                       className="rounded-full shadow-lg bg-primary hover:bg-primary/90 text-primary-foreground h-10 px-4 text-xs font-semibold gap-1.5"
                     >
-                      <FileText className="h-3.5 w-3.5" /> CV / Resume
+                      <Link href="/resume" onClick={() => setIsMenuOpen(false)}>
+                        <FileText className="h-3.5 w-3.5" /> CV / Resume
+                      </Link>
                     </Button>
                   </motion.div>
 
@@ -178,6 +177,7 @@ export default function FloatingActionButton() {
                 size="icon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Quick menu"
+                aria-expanded={isMenuOpen}
                 className="rounded-full shadow-xl bg-background/80 backdrop-blur-sm border-primary/30 hover:bg-primary/20 h-11 w-11"
               >
                 {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

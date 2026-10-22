@@ -3,23 +3,17 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
-  Code2,
   Sparkles,
   ExternalLink,
   Github,
   GraduationCap,
   Award,
-  Layers,
   CheckCircle2,
   ChevronRight,
-  Database,
-  Cpu,
   Car,
   Landmark,
   Bot,
-  Compass,
   Linkedin,
-  Mail,
   Zap,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
@@ -35,37 +29,37 @@ export function BentoShowcase() {
       title: "DriveEasy",
       tagline: "Smart Car Rental Platform",
       period: "Sep 2026",
-      icon: <Car className="h-4 w-4 text-blue-400" />,
+      icon: <Car className="h-4 w-4 text-gold" />,
       category: "Full-Stack Web",
       bullet:
         "Engineered real-time vehicle availability with Socket.io, Stripe checkout payments, Cloudinary media, and automated transactional emails.",
       tech: ["React", "TypeScript", "Node.js", "Express", "Socket.io", "Stripe", "PostgreSQL/Prisma"],
       repo: "https://github.com/Piyush-singh17200/driveeasy",
-      badgeColor: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+      badgeColor: "bg-gold/10 text-gold border-gold/25",
     },
     yojanasetu: {
       title: "YojanaSetu",
       tagline: "Government Scheme Eligibility Platform",
       period: "Jul 2026",
-      icon: <Landmark className="h-4 w-4 text-cyan-400" />,
+      icon: <Landmark className="h-4 w-4 text-primary" />,
       category: "Gemini AI Platform",
       bullet:
         "Built intelligent eligibility engine matching income, occupation & category with scheme database context using Google Gemini AI.",
       tech: ["React", "Node.js", "Express", "Gemini AI", "REST APIs", "Tailwind CSS"],
       repo: "https://github.com/Piyush-singh17200/YojanaSetu",
-      badgeColor: "bg-cyan-500/15 text-cyan-400 border-cyan-500/30",
+      badgeColor: "bg-primary/10 text-primary border-primary/25",
     },
     eduai: {
       title: "EduAI",
       tagline: "AI Learning & Career Platform",
       period: "Mar 2026",
-      icon: <Bot className="h-4 w-4 text-purple-400" />,
+      icon: <Bot className="h-4 w-4 text-foreground/70" />,
       category: "Adaptive AI System",
       bullet:
         "Architected intelligent tutoring, resume ATS scoring, personalized DSA roadmaps, and mock interview coaching via Gemini & OpenRouter.",
       tech: ["React", "Node.js", "Express", "Gemini API", "JWT Auth", "PDF Extraction"],
       repo: "https://github.com/Piyush-singh17200/EDUAI",
-      badgeColor: "bg-purple-500/15 text-purple-400 border-purple-500/30",
+      badgeColor: "bg-foreground/5 text-foreground/70 border-foreground/15",
     },
   }
 
@@ -74,18 +68,18 @@ export function BentoShowcase() {
   return (
     <div className="w-full max-w-xl mx-auto flex flex-col space-y-3.5">
       {/* Ambient Glow Orbs */}
-      <div className="relative rounded-2xl overflow-hidden p-1 bg-gradient-to-b from-primary/30 via-primary/10 to-cyan-500/15 shadow-2xl shadow-primary/10 border border-primary/25">
+      <div className="relative rounded-2xl overflow-hidden p-1 bg-gradient-to-b from-primary/25 via-border/30 to-gold/15 shadow-2xl shadow-black/10 border border-primary/20">
         <div className="relative rounded-[14px] bg-background/90 backdrop-blur-2xl p-4 sm:p-5 space-y-4">
 
           {/* 1. TOP BENTO ITEM: Developer Profile & Live Status */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3.5 border-b border-primary/15">
             <div className="flex items-center gap-3">
               {/* Glowing Monogram Avatar */}
-              <div className="relative flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-400 text-white font-extrabold text-base shadow-lg shadow-blue-500/30 ring-2 ring-primary/30">
+              <div className="relative flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-primary via-primary/80 to-gold/80 text-primary-foreground font-extrabold text-base shadow-lg shadow-primary/15 ring-2 ring-primary/25">
                 <span>PS</span>
                 <span className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 ring-2 ring-background"></span>
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-gold/25"></span>
+                  <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-gold ring-2 ring-background"></span>
                 </span>
               </div>
 
@@ -106,7 +100,7 @@ export function BentoShowcase() {
 
             {/* Live Status Pill & Quick Socials */}
             <div className="flex items-center gap-2 self-end sm:self-auto">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-semibold border border-emerald-500/30">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold/10 text-gold text-[10px] font-semibold border border-gold/25">
                 <Zap className="h-3 w-3" />
                 Available to Hire
               </span>
@@ -272,7 +266,7 @@ export function BentoShowcase() {
                 <span className="text-[11px] uppercase tracking-wider font-bold text-primary flex items-center gap-1">
                   <Award className="h-3.5 w-3.5" /> Summer Training
                 </span>
-                <span className="text-[10px] font-semibold font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">
+                <span className="text-[10px] font-semibold font-mono text-gold bg-gold/10 px-2 py-0.5 rounded-full border border-gold/20">
                   Certified
                 </span>
               </div>
@@ -296,7 +290,7 @@ export function BentoShowcase() {
           {/* 4. VERIFIED CERTIFICATIONS ROW */}
           <div className="p-3 rounded-xl bg-primary/5 border border-primary/15 space-y-1.5">
             <span className="text-[10px] uppercase tracking-wider font-bold text-primary flex items-center gap-1">
-              <CheckCircle2 className="h-3 w-3 text-emerald-400" /> Key Industry Certifications
+              <CheckCircle2 className="h-3 w-3 text-gold" /> Key Industry Certifications
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-[11px]">
               <a

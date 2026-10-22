@@ -10,10 +10,8 @@ import {
   Database,
   Cloud,
   Code2,
-  Calendar,
   CheckCircle2,
   ExternalLink,
-  Sparkles,
 } from "lucide-react"
 import { resumeData } from "@/lib/resume-data"
 
@@ -23,10 +21,10 @@ export default function Certificates() {
 
   const getCertIcon = (title: string) => {
     if (title.toLowerCase().includes("database") || title.toLowerCase().includes("dbms")) {
-      return <Database className="h-6 w-6 text-purple-400" />
+      return <Database className="h-6 w-6 text-gold" />
     }
     if (title.toLowerCase().includes("oracle") || title.toLowerCase().includes("ai")) {
-      return <Cloud className="h-6 w-6 text-cyan-400" />
+      return <Cloud className="h-6 w-6 text-primary" />
     }
     return <Code2 className="h-6 w-6 text-primary" />
   }
@@ -51,7 +49,7 @@ export default function Certificates() {
           <h2 className="text-3xl sm:text-5xl font-bold mb-4">
             Official <span className="text-primary">Certificates</span>
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-primary to-cyan-400 rounded-full mb-6"></div>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-primary via-primary/70 to-gold rounded-full mb-6"></div>
           <p className="max-w-2xl text-muted-foreground text-sm md:text-base">
             Professional certifications in Database Management Systems, Oracle Cloud AI Infrastructure, and Java Object-Oriented Programming.
           </p>
@@ -70,7 +68,7 @@ export default function Certificates() {
             >
               <Card className="flex flex-col h-full w-full bg-background/50 backdrop-blur-xl border-primary/20 hover:border-primary/50 transition-all duration-300 shadow-xl hover:shadow-primary/10 overflow-hidden group">
                 {/* Visual Accent Top Line */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400" />
+                <div className="h-1.5 w-full bg-gradient-to-r from-primary via-primary/80 to-gold" />
 
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between gap-2 mb-3">
@@ -87,7 +85,7 @@ export default function Certificates() {
                   </CardTitle>
 
                   <CardDescription className="text-xs font-semibold text-primary/90 pt-1 flex items-center gap-1.5">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+                    <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
                     {cert.issuer}
                   </CardDescription>
                 </CardHeader>

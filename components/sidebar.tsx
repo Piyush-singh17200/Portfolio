@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { useTheme } from "next-themes"
@@ -24,7 +24,6 @@ import {
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { resumeData } from "@/lib/resume-data"
-import { triggerOpenResume } from "@/hooks/use-resume-modal"
 
 interface SidebarProps {
   isOpen: boolean
@@ -35,11 +34,58 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isDark, setIsDark] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const onCloseRef = useRef(onClose)
+
+  useEffect(() => {
+    onCloseRef.current = onClose
+  }, [onClose])
 
   useEffect(() => {
     setMounted(true)
     setIsDark(theme === "dark")
   }, [theme])
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    const focusTimer = window.setTimeout(() => closeButtonRef.current?.focus(), 60)
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onCloseRef.current()
+        return
+      }
+
+      if (event.key !== "Tab" || !panelRef.current) return
+
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+      if (!focusable.length) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.clearTimeout(focusTimer)
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [isOpen])
 
   const handleThemeToggle = () => {
     setIsDark(!isDark)
@@ -47,14 +93,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   }
 
   const navLinks = [
-    { name: "Home", href: "#home", icon: <Home className="h-4 w-4" /> },
-    { name: "About", href: "#about", icon: <User className="h-4 w-4" /> },
-    { name: "Projects", href: "#projects", icon: <Briefcase className="h-4 w-4" /> },
-    { name: "Training", href: "#training", icon: <Compass className="h-4 w-4" /> },
-    { name: "Certificates", href: "#certificates", icon: <Award className="h-4 w-4" /> },
-    { name: "Skills", href: "#skills", icon: <Code2 className="h-4 w-4" /> },
-    { name: "Journey", href: "#experience", icon: <GraduationCap className="h-4 w-4" /> },
-    { name: "Contact", href: "#contact", icon: <Mail className="h-4 w-4" /> },
+    { name: "Home", href: "/#home", icon: <Home className="h-4 w-4" /> },
+    { name: "About", href: "/#about", icon: <User className="h-4 w-4" /> },
+    { name: "Projects", href: "/#projects", icon: <Briefcase className="h-4 w-4" /> },
+    { name: "Training", href: "/#training", icon: <Compass className="h-4 w-4" /> },
+    { name: "Certificates", href: "/#certificates", icon: <Award className="h-4 w-4" /> },
+    { name: "Skills", href: "/#skills", icon: <Code2 className="h-4 w-4" /> },
+    { name: "Journey", href: "/#experience", icon: <GraduationCap className="h-4 w-4" /> },
+    { name: "Contact", href: "/#contact", icon: <Mail className="h-4 w-4" /> },
   ]
 
   const socialLinks = [
@@ -79,6 +125,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
           {/* Sidebar */}
           <motion.div
+            ref={panelRef}
+            id="site-sidebar"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -90,7 +141,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 {/* Header */}
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center space-x-3">
-                    <div className="relative h-11 w-11 flex items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-500 to-cyan-400 p-0.5 shadow-lg shadow-primary/20">
+                    <div className="relative h-11 w-11 flex items-center justify-center rounded-2xl bg-gradient-to-tr from-primary via-primary/80 to-gold/80 p-0.5 shadow-lg shadow-primary/15">
                       <div className="w-full h-full bg-background rounded-[14px] flex items-center justify-center font-black text-sm text-primary">
                         PS
                       </div>
@@ -102,7 +153,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       <p className="text-xs text-muted-foreground">{resumeData.title}</p>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon" onClick={onClose} className="hover:bg-primary/10">
+                  <Button
+                    ref={closeButtonRef}
+                    variant="ghost"
+                    size="icon"
+                    onClick={onClose}
+                    aria-label="Close menu"
+                    className="hover:bg-primary/10"
+                  >
                     <X className="h-5 w-5" />
                   </Button>
                 </div>
@@ -110,14 +168,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 {/* CV Action */}
                 <div className="mb-6">
                   <Button
+                    asChild
                     size="sm"
-                    onClick={() => {
-                      onClose()
-                      triggerOpenResume()
-                    }}
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-xs gap-2 py-5 shadow-md shadow-primary/20"
                   >
-                    <FileText className="h-4 w-4" /> View / Download CV
+                    <Link href="/resume" onClick={onClose}>
+                      <FileText className="h-4 w-4" /> View / Download CV
+                    </Link>
                   </Button>
                 </div>
 
@@ -132,7 +189,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           className="flex items-center space-x-3 p-2.5 rounded-lg hover:bg-primary/10 transition-colors text-sm font-medium"
                           onClick={() => {
                             onClose()
-                            const element = document.getElementById(link.href.substring(1))
+                            const element = document.getElementById(link.href.substring(2))
                             if (element) {
                               element.scrollIntoView({ behavior: "smooth" })
                             }
